@@ -7,12 +7,12 @@ const ReferralForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('http://localhost:5000/api/referrals', data);
+      const response = await axios.post('https://accredian-backend-task-zemy.onrender.com/api/referrals', data);
       console.log('Referral submitted successfully:', response.data);
-      alert('Referral submitted successfully!');
+      alert('Referral sent successfully!');
     } catch (error) {
       console.error('Error submitting referral:', error);
-      alert('Failed to submit referral. Please try again.');
+      alert('Failed to sent referral. Please try again.');
     }
   };
 
