@@ -3,16 +3,17 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
 const ReferralForm = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
   const onSubmit = async (data) => {
     try {
       const response = await axios.post('https://accredian-backend-task-zemy.onrender.com/api/referrals', data);
       console.log('Referral submitted successfully:', response.data);
       alert('Referral sent successfully!');
+      reset(); 
     } catch (error) {
       console.error('Error submitting referral:', error);
-      alert('Failed to sent referral. Please try again.');
+      alert('Failed to send referral. Please try again.');
     }
   };
 

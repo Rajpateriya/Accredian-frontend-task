@@ -3,6 +3,11 @@ import ReferralModal from "./ReferralModal";
 
 const HeroSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -13,29 +18,61 @@ const HeroSection = () => {
   };
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="px-4 lg:px-6 h-14 flex items-center bg-gray-300 border-b sticky top-0 z-10">
-        {/* Logo */}
-        <a href="#" className="flex items-center justify-center">
-          <span className="text-lg font-semibold text-gray-800">Accredian</span>
-        </a>
+     <header className="px-4 lg:px-6 h-14 flex items-center bg-gray-300 border-b sticky top-0 z-10">
+      {/* Logo */}
+      <a href="#" className="flex items-center justify-center lg:mr-auto">
+        <span className="text-lg font-semibold text-gray-800">Accredian</span>
+      </a>
 
-        {/* Navigation */}
-        <nav className="ml-auto mr-12 flex gap-4 sm:gap-6 text-black items-center justify-center">
-          {/* Navigation Links */}
-          <a href="#home" className="nav-link hover:shadow-lg">
+      {/* Hamburger Icon for Mobile */}
+      <div className="ml-auto lg:hidden">
+        <button
+          onClick={toggleMenu}
+          className="focus:outline-none"
+        >
+          <svg className={`w-6 h-6 ${isMenuOpen ? 'hidden' : 'block'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg className={`w-6 h-6 ${isMenuOpen ? 'block' : 'hidden'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      {/* Navigation Links */}
+      <nav className={`hidden lg:flex flex-grow gap-4 sm:gap-6 text-black items-center justify-center`}>
+        <a href="#home" className="nav-link hover:shadow-lg">
+          Home
+        </a>
+        <a href="#refer" className="nav-link hover:shadow-lg">
+          Refer & Earn
+        </a>
+        <a href="#benefits" className="nav-link hover:shadow-lg">
+          Benefits
+        </a>
+        <a href="#contact" className="nav-link hover:shadow-lg">
+          Contact
+        </a>
+      </nav>
+
+      {/* Responsive Menu for Mobile */}
+      <div className={`lg:hidden bg-primary fixed top-14 inset-x-0 z-20 overflow-y-auto max-h-screen transform ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'} transition duration-300 ease-in-out`} id="mobile-menu">
+        <div className="p-4">
+          <a href="#home" className="block py-2 nav-link text-center border-b border-gray-300">
             Home
           </a>
-          <a href="#refer" className="nav-link hover:shadow-lg">
+          <a href="#refer" className="block py-2 nav-link text-center border-b border-gray-300">
             Refer & Earn
           </a>
-          <a href="#benefits" className="nav-link hover:shadow-lg">
+          <a href="#benefits" className="block py-2 nav-link text-center border-b border-gray-300">
             Benefits
           </a>
-          <a href="#contact" className="nav-link hover:shadow-lg">
+          <a href="#contact" className="block py-2 nav-link text-center">
             Contact
           </a>
-        </nav>
-      </header>
+        </div>
+      </div>
+    </header>
       <main className="flex-1">
         <section
           id="home"
@@ -143,7 +180,7 @@ const HeroSection = () => {
           <div className="container mx-auto px-4 md:px-6 bg-gradient-to-r from-primary to-secondary">
             <div className="flex flex-col items-center justify-center space-y-4 text-center ">
               <div className="space-y-2 md:py-12 lg:py-12">
-                <h2 className="text-3xl font-bold tracking-tighter text- sm:text-5xl ">
+                <h2 className="text-3xl font-bold tracking-tighter text- sm:text-5xl my-3 ">
                   Benefits of Referral
                 </h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
